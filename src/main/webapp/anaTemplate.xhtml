@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Müşteri</title>
+    </h:head>
+
+    <h:body>  
+        <p:layout fullPage="true">
+<p:layoutUnit position="north" size="120" resizable="true"
+closable="true" collapsible="true">
+ <ui:insert name="top">
+     <table width="100%" style="height: 60px;">
+         <tr>
+             <td style="width:20%; height: 60px"> 
+                 <p:graphicImage width="120px"  library="resimler" name="glogo4.png"/>
+             </td>
+             <td style="width:80%; " align="center">
+                 <h1>Müşteri Uygulaması</h1>
+             </td>
+         </tr>
+     </table>
+ </ui:insert>
+</p:layoutUnit>
+<p:layoutUnit position="south" size="15%" 
+resizable="true" closable="true" collapsible="true">
+<ui:insert name="bottom">
+    <center><h6>Copyright@2015</h6></center>
+</ui:insert>
+</p:layoutUnit>
+<p:layoutUnit position="west" size="200"
+ resizable="true" closable="true"
+collapsible="true">
+    <ui:insert name="left">
+    <p:menu >
+        <p:submenu label="Menü">
+            <p:menuitem value="demo" url="#" />
+            <p:menuitem value="forum" url="#"/>
+            <p:menuitem value="themes" url="#"/>
+        </p:submenu>
+    </p:menu>
+
+        </ui:insert>
+</p:layoutUnit>
+<p:layoutUnit id="centerUnit" position="center">
+<ui:insert name="content">Content</ui:insert>
+</p:layoutUnit>
+</p:layout>
+
+    </h:body>
+
+</html>
