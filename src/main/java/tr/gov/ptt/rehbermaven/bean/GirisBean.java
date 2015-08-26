@@ -8,13 +8,16 @@ package tr.gov.ptt.rehbermaven.bean;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.persistence.NoResultException;
 import tr.gov.ptt.rehbermaven.entity.Giris;
 import tr.gov.ptt.rehbermaven.service.GirisService;
+import tr.gov.ptt.rehbermaven.util.JSFUtil;
 
 @ManagedBean
 @RequestScoped
 public class GirisBean {
-    private Giris giris=new Giris();
+
+    private Giris giris = new Giris();
     @EJB
     GirisService girisService;
 
@@ -28,13 +31,16 @@ public class GirisBean {
     public void setGiris(Giris giris) {
         this.giris = giris;
     }
-    public String giriseYetkilimi()
-    {
-        boolean sonuc=girisService.GiriseYetkilimi(giris);
-        if(sonuc)
-            return "menu.xhtml";
-        else
-            return "giris.xhtml";
+
+    public String giriseYetkilimi() {
+            boolean sonuc = girisService.GiriseYetkilimi(giris);
+            if (sonuc) {
+                return "menu.xhtml?faces-redirect=true";
+            } else {
+                JSFUtil.hataGoster("Hatalı Giriş", "Kullanıcı adı veya Şifre yalnış!!!");
+                return "giris.xhtml?faces-redirect=true";
+            }
+       
     }
-    
+
 }
