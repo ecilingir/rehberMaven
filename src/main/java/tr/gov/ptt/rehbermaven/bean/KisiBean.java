@@ -27,7 +27,7 @@ public class KisiBean {
     public void setKisi(Kisi kisi) {
         this.kisi = kisi;
     }
-    public String  Ekle()
+    public String  ekle()
     {
        kisiService.ekle(kisi);
         JSFUtil.mesajGoster("Kişi Eklendi", kisi.getAd()+" "+kisi.getSoyad()+" eklendi.");

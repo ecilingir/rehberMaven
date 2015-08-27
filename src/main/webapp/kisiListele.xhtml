@@ -9,7 +9,10 @@
     <body>
 
         <ui:composition template="./anaTemplate.xhtml">
-
+            <ui:define name="sayfaBasligi">
+                Kişi Listesi
+            </ui:define>
+                       
             <ui:define name="content">
                 <h:form id="listeleForm">
                     <p:dataTable id="listeTablo" value="#{kisiBean.kisiListe}" 
