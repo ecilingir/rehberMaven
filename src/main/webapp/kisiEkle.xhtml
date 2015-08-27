@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <body>
+
+        <ui:composition template="./anaTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form id="kisiEkleForm">
+                    <p:panel header="Kişi Ekle">
+
+                        <p:panelGrid columns="3">
+                            <p:outputLabel value="Ad :" for="ad"/>
+                            <p:inputText id="ad" value="#{kisiBean.kisi.ad}"
+                                         label="Ad" required="true"
+                                         requiredMessage="Ad alanı boş geçilemez"
+                                         >
+                                <p:ajax event="keyup" update="adMsg"/>
+
+                            </p:inputText>
+                            <p:message id="adMsg" for="ad"/>
+                            
+                            <p:outputLabel value="Soyad :" for="soyad"/>
+                            <p:inputText id="soyad" value="#{kisiBean.kisi.soyad}"
+                                         label="Soyad" required="true"
+                                         requiredMessage="Soyad alanı boş geçilemez"
+                                         >
+                                <p:ajax event="keyup" update="soyadMsg"/>
+
+                            </p:inputText>
+                            <p:message id="soyadMsg" for="soyad"/>
+                            
+                            <p:outputLabel value="Maaş :" for="maas"/>
+                            <pe:inputNumber id="maas" value="#{kisiBean.kisi.maas}"
+                                            label="Maaş" decimalSeparator="," thousandSeparator="."
+                                         >
+                                <p:ajax event="keyup" update="maasMsg"/>
+
+                            </pe:inputNumber>
+                            <p:message id="maasMsg" for="maas"/>
+                            
+                            
+                            <p:outputLabel value="Doğum Tarihi :" for="dogtar"/>
+                            <p:calendar id="dogtar" pattern="dd/mm/yyyy" locale="tr" 
+                                        value="#{kisiBean.kisi.dogtar}"
+                                        showOn="button"
+                                        navigator="true"
+                                        yearRange="c-30:c"
+                                        maxdate="true"/>
+                            <p:message id="dogtarMsg" for="dogtar"/>
+                            
+                            
+                            <p:outputLabel />
+                            <p:commandButton value="Ekle" action="#{kisiBean.ekle()}" update="kisiEkleForm"/>
+                            <p:outputLabel/>
+
+                        </p:panelGrid>
+                    </p:panel>
+
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

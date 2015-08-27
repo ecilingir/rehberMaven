@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./anaTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form id="listeleForm">
+                    <p:dataTable id="listeTablo" value="#{kisiBean.kisiListe}" 
+                                 var="kisi" paginator="true" rowsPerPageTemplate="5,10,15">
+                        <p:column headerText="no" >
+                            <h:outputText value="#{kisi.no}" />
+                        </p:column>
+                        <p:column headerText="Ad" >
+                            <h:outputText value="#{kisi.ad}" />
+                        </p:column>
+                        <p:column headerText="Soyad" >
+                            <h:outputText value="#{kisi.soyad}" />
+                        </p:column>
+                        <p:column headerText="Maaş" >
+                            <h:outputText value="#{kisi.maas}" />
+                        </p:column>
+
+                        <p:column headerText="Doğum Tarihi" >
+                            <h:outputText value="#{kisi.dogtar}" >
+                                <f:convertDateTime pattern="dd/MM/yyyy" timeZone="EET"/>
+                            </h:outputText>
+                        </p:column>
+
+                    </p:dataTable>
+                    <p:commandButton value="Pdf" ajax="false">
+                        <p:dataExporter target="listeTablo" type="pdf" fileName="Kisiler" encoding="Cp1254" />
+                    </p:commandButton>
+                    <p:commandButton value="Excel" ajax="false">
+                        <p:dataExporter target="listeTablo" type="xls" fileName="Kisiler" />
+                    </p:commandButton>
+
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
