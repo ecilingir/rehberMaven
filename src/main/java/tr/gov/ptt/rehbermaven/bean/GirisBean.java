@@ -10,9 +10,11 @@ import java.util.Date;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.persistence.NoResultException;
+import javax.persistence.NoResultException; 
 import javax.servlet.http.HttpSession;
 import tr.gov.ptt.rehbermaven.entity.Giris;
+import tr.gov.ptt.rehbermaven.entity.Log;
+import tr.gov.ptt.rehbermaven.facade.LogFacade;
 import tr.gov.ptt.rehbermaven.service.GirisService;
 import tr.gov.ptt.rehbermaven.util.JSFUtil;
 
@@ -23,6 +25,9 @@ public class GirisBean {
     private Giris giris = new Giris();
     @EJB
     GirisService girisService;
+    @EJB
+    LogFacade logFacade;
+    
     private java.util.Date tarihSaat=new java.util.Date();
 
     public GirisBean() {
@@ -52,6 +57,11 @@ public class GirisBean {
             HttpSession session = JSFUtil.getSession();
             System.out.println(session.getId() + " nolu session başlıyor.");
             session.setAttribute("kullanici", giris.getKullanici());
+            Log log = new Log();
+            log.setKullanici(giris.getKullanici());
+            log.setTarihsaat(new java.util.Date());
+            log.setIslem("Giriş");
+            logFacade.create(log);
             return "menu.xhtml?faces-redirect=true";
         } else {
             JSFUtil.hataGoster("Hatalı Giriş", "Kullanıcı adı veya Şifre yalnış!!!");

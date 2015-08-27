@@ -12,9 +12,12 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -43,7 +46,9 @@ public class Log implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "SIRANO")
-    private BigDecimal sirano;
+    @SequenceGenerator(name = "logseq",sequenceName = "SEQ_LOG" , initialValue = 1, allocationSize = 1)
+    @GeneratedValue(generator = "logseq",strategy = GenerationType.SEQUENCE)
+    private Integer sirano;
     @Size(max = 30)
     @Column(name = "KULLANICI")
     private String kullanici;
@@ -54,20 +59,20 @@ public class Log implements Serializable {
     @Column(name = "ISLEM")
     private String islem;
     @Column(name = "KISINO")
-    private BigInteger kisino;
+    private Integer kisino;
 
     public Log() {
     }
 
-    public Log(BigDecimal sirano) {
+    public Log(Integer sirano) {
         this.sirano = sirano;
     }
 
-    public BigDecimal getSirano() {
+    public Integer getSirano() {
         return sirano;
     }
 
-    public void setSirano(BigDecimal sirano) {
+    public void setSirano(Integer sirano) {
         this.sirano = sirano;
     }
 
@@ -95,11 +100,11 @@ public class Log implements Serializable {
         this.islem = islem;
     }
 
-    public BigInteger getKisino() {
+    public Integer getKisino() {
         return kisino;
     }
 
-    public void setKisino(BigInteger kisino) {
+    public void setKisino(Integer kisino) {
         this.kisino = kisino;
     }
 
