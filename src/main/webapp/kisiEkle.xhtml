@@ -24,7 +24,7 @@
 
                             </p:inputText>
                             <p:message id="adMsg" for="ad"/>
-                            
+
                             <p:outputLabel value="Soyad :" for="soyad"/>
                             <p:inputText id="soyad" value="#{kisiBean.kisi.soyad}"
                                          label="Soyad" required="true"
@@ -34,17 +34,17 @@
 
                             </p:inputText>
                             <p:message id="soyadMsg" for="soyad"/>
-                            
+
                             <p:outputLabel value="Maaş :" for="maas"/>
                             <pe:inputNumber id="maas" value="#{kisiBean.kisi.maas}"
                                             label="Maaş" decimalSeparator="," thousandSeparator="."
-                                         >
+                                            >
                                 <p:ajax event="keyup" update="maasMsg"/>
 
                             </pe:inputNumber>
                             <p:message id="maasMsg" for="maas"/>
-                            
-                            
+
+
                             <p:outputLabel value="Doğum Tarihi :" for="dogtar"/>
                             <p:calendar id="dogtar" pattern="dd/mm/yyyy" locale="tr" 
                                         value="#{kisiBean.kisi.dogtar}"
@@ -53,8 +53,8 @@
                                         yearRange="c-30:c"
                                         maxdate="true"/>
                             <p:message id="dogtarMsg" for="dogtar"/>
-                            
-                            
+
+
                             <p:outputLabel />
                             <p:commandButton value="Ekle" action="#{kisiBean.ekle()}" update="kisiEkleForm"/>
                             <p:outputLabel/>
@@ -67,6 +67,7 @@
             </ui:define>
 
         </ui:composition>
+
 
     </body>
 </html>

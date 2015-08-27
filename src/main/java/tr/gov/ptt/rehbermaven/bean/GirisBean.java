@@ -5,6 +5,8 @@
  */
 package tr.gov.ptt.rehbermaven.bean;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -21,8 +23,11 @@ public class GirisBean {
     private Giris giris = new Giris();
     @EJB
     GirisService girisService;
+    private java.util.Date tarihSaat=new java.util.Date();
 
     public GirisBean() {
+        giris.setKullanici("esra");
+        giris.setSifre("1234");
     }
 
     public Giris getGiris() {
@@ -31,6 +36,14 @@ public class GirisBean {
 
     public void setGiris(Giris giris) {
         this.giris = giris;
+    }
+
+    public Date getTarihSaat() {
+        return tarihSaat;
+    }
+
+    public void setTarihSaat(Date tarihSaat) {
+        this.tarihSaat = tarihSaat;
     }
 
     public String giriseYetkilimi() {
@@ -52,6 +65,17 @@ public class GirisBean {
         JSFUtil.SessionBitir(session);
         JSFUtil.mesajGoster("Session bitti", "Yeniden giriş yapınız");
         return "giris.xhtml?faces-redirect=true";
+    }
+
+    public String sistemTarihSaatGetir() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        return sdf.format(new java.util.Date());
+
+    }
+
+    public void sistemTarihSaatGuncelle() {
+        tarihSaat = new java.util.Date();
+
     }
 
 }

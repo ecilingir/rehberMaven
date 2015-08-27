@@ -25,7 +25,8 @@
                 <p:outputLabel value="Şifre :" for="sifre"/>
                 <p:password id="sifre" label="Şifre"
                             value="#{girisBean.giris.sifre}"
-                            required="true" requiredMessage="Şifre alanı boş geçilemez!">
+                            required="true" requiredMessage="Şifre alanı boş geçilemez!"
+                            redisplay="true">
                     <p:ajax event="keyup" update="sifreMsg"/>
                 </p:password>
                 <p:message id="sifreMsg" for="sifre"/>
