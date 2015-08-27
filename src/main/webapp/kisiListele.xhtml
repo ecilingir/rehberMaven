@@ -12,16 +12,29 @@
             <ui:define name="sayfaBasligi">
                 Kişi Listesi
             </ui:define>
-                       
             <ui:define name="content">
+
                 <h:form id="listeleForm">
+                    <p:growl id="mesajlar" showDetail="true"/>
                     <p:dataTable id="listeTablo" value="#{kisiBean.kisiListe}" 
-                                 var="kisi" paginator="true" rowsPerPageTemplate="5,10,15">
+                                 var="kisi" paginator="true" rowsPerPageTemplate="5,10,15"
+                                 editable="true">
+                        <p:ajax event="rowEdit" listener="#{kisiBean.onRowEdit}" update=":listeleForm:mesajlar" />
+                        <p:ajax event="rowEditCancel" listener="#{kisiBean.onRowCancel}" update=":listeleForm:mesajlar" />
+                        
+                        
                         <p:column headerText="no" >
                             <h:outputText value="#{kisi.no}" />
                         </p:column>
                         <p:column headerText="Ad" >
-                            <h:outputText value="#{kisi.ad}" />
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{kisi.ad}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <h:inputText value="#{kisi.ad}" />
+                                </f:facet>
+                            </p:cellEditor>
                         </p:column>
                         <p:column headerText="Soyad" >
                             <h:outputText value="#{kisi.soyad}" />
@@ -34,6 +47,9 @@
                             <h:outputText value="#{kisi.dogtar}" >
                                 <f:convertDateTime pattern="dd/MM/yyyy" timeZone="EET"/>
                             </h:outputText>
+                        </p:column>
+                        <p:column style="width: 32px">
+                            <p:rowEditor/>
                         </p:column>
 
                     </p:dataTable>

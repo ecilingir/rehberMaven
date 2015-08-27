@@ -28,6 +28,17 @@ public class KisiService {
 
     }
 
+    public void guncelle(Kisi p_kisi) {
+        kisiFacade.edit(p_kisi);
+        Log log = new Log();
+        log.setKullanici(JSFUtil.getKullanici());
+        log.setTarihsaat(new java.util.Date());
+        log.setIslem("Ekleme");
+        log.setKisino(p_kisi.getNo());
+        logFacade.create(log);
+
+    }
+
     public List<Kisi> kisileriGetir() {
         return kisiFacade.findAll();
 
